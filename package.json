@@ -1,0 +1,27 @@
+{
+  "name": "MMM-FeedProvider-Reddit",
+  "version": "1.0.0",
+  "description": "Magic Mirror Module for pulling Reddit stuff, converting to RSS 2.0 format and passing to a main module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheBodger/MMM-FeedProvider-Reddit"
+  },
+  "author": {
+    "name": "N Scott"
+  },
+  "keywords": [
+    "magic mirror",
+    "smart mirror",
+    "Reddit",
+    "module",
+    "provider"
+  ],
+  "dependencies": {
+    "xmlhttprequest": "latest"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheBodger/MMM-FeedProvider-Reddit/issues"
+  },
+  "homepage": "https://github.com/TheBodger/MMM-FeedProvider-Reddit#readme"
+}
