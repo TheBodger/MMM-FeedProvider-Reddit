@@ -22,18 +22,20 @@ Module.register("MMM-FeedProvider-Reddit", {
         id: "",				//the unique id of this provider
         // optional
         datarefreshinterval: 5000*60,
-        limit: 25,			//default for the limit if not given at the feed level
 		language: '',		//leave empty and only use if requested
-		adultonly: true,	//obvious really !!
+
+		//the following are used as a default for all feeds if not explicity defined in config.js
+		adultonly: true,	//obvious really !! //used as a default for all feeds as well if not explicity defined
+		nolinks: true,		//ignores any item that looks like a link to another item
+		limit: 25,			//limit of feeds to fetch from reddit if supported in the type call
+		type: 'top',		//reddit.js supported commands (search, searchsub, top, controversial, random)
+
         feeds: [
 			{
 				feedname: 'Funny',
 				feedtitle: 'Funny',
 				reddit: 'funny',	//there is no default for this entry - it is acceptable to be undefined
-				limit: 5,
-				type: 'top',		//reddit.js supported commands (search, searchsub, top, controversial, random)
-				oldestage: 'all',	//a date, number of minutes, or the followimng strings: 'today' , special reddit options 'day', 'week', 'month', 'year' or 'all'(-time)
-				nolinks:true,		//ignores any item that looks like a link to another item
+				oldestage: 'all',	//a date, number of minutes, or the followimng strings: 'today' , special reddit options 'day', 'week', 'month', 'year' or 'all'(-time)				
 			},
 
         ],

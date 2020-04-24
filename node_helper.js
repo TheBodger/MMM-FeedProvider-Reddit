@@ -101,8 +101,16 @@ module.exports = NodeHelper.create({
 				feed.configfeed['limit'] = config.limit; //use the default
 			}
 
+			if (configfeed.nolinks == null) {
+				feed.configfeed['nolinks'] = config.nolinks;//use the default
+			}
+
 			if (configfeed.type == null) {
-				feed.configfeed['type'] = 'search'; //use the default
+				feed.configfeed['type'] = config.type;//use the default
+			}
+
+			if (configfeed.adultonly == null) {
+				feed.configfeed['adultonly'] = config.adultonly;//use the default
 			}
 
 			providerstorage[moduleinstance].trackingfeeddates.push(feed);
@@ -396,9 +404,9 @@ module.exports = NodeHelper.create({
 
 			var media = items.data.children[tIndex].data;
 
-			if (media.over_18 && !theconfig.adultonly) { ignorepost = true;}
+			if (media.over_18 && !feed.configfeed.adultonly) { ignorepost = true;}
 
-			if (theconfig.nolinks && media.selftext == '') { ignorepost = true;}
+			if (media.selftext == '' && feed.configfeed.nolinks) { ignorepost = true;}
 
 			if (!ignorepost) {
 
