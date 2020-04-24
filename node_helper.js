@@ -351,7 +351,7 @@ module.exports = NodeHelper.create({
 
 			case 'random':
 
-				reddit.random(feed.configfeed.reddit).limit(feed.configfeed.limit).fetch(function (res) {
+				reddit.random(feed.configfeed.reddit).fetch(function (res) {
 					self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems);
 				}
 
