@@ -377,7 +377,7 @@ module.exports = NodeHelper.create({
 
 	},
 
-	parseRedditPosts: function (theConfig, items, feed, moduleinstance, rssitems, feedidx) {
+	parseRedditPosts: function (theconfig, items, feed, moduleinstance, rssitems, feedidx) {
 
 		var self = this;
 
@@ -396,7 +396,7 @@ module.exports = NodeHelper.create({
 
 			var media = items.data.children[tIndex].data;
 
-			if (media.over_18 && !theConfig.adultonly) { ignorepost = true };
+			if (media.over_18 && !theconfig.adultonly) { ignorepost = true };
 
 			if (!ignorepost) {
 
@@ -434,7 +434,7 @@ module.exports = NodeHelper.create({
 				}
 
 				//special condition for random - dont check the dates!!
-				if(	feed.configfeed.type.toLowerCase() = 'random' ||
+				if(	feed.configfeed.type.toLowerCase() == 'random' ||
 					post.pubdate >= feed.lastFeedDate && post.pubdate > feed.latestfeedpublisheddate) {
 
 					rssarticle.id = rssarticle.gethashCode(post.title);
