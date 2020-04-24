@@ -357,11 +357,11 @@ module.exports = NodeHelper.create({
 
 				var itercount = 1;
 
-				if (feed.reddit != null) {
-					itercount = feed.limit;
+				if (feed.configfeed.reddit != null) {
+					itercount = feed.configfeed.limit;
 				}
 
-				for (var iter = 0; iter < feed.limit; iter++) {
+				for (var iter = 0; iter < itercount; iter++) {
 
 					reddit.random(feed.configfeed.reddit).fetch(function (res) {
 						self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, new RSS.RSSitems());
