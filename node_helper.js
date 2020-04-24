@@ -323,7 +323,6 @@ module.exports = NodeHelper.create({
 		switch (feed.configfeed.type.toLowerCase()) {
 			case 'top':
 
-				// Fetch the top 5 funniest posts of all time from /r/funny
 				reddit.top(feed.configfeed.reddit).t(feed.configfeed.oldestage).limit(feed.configfeed.limit).fetch(function (res) {
 					self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems, feedidx); 
 				});
@@ -406,7 +405,7 @@ module.exports = NodeHelper.create({
 
 			if (media.over_18 && !feed.configfeed.adultonly) { ignorepost = true;}
 
-			if (media.selftext == '' && feed.configfeed.nolinks) { ignorepost = true;}
+			if (media.post_hint == 'link' && feed.configfeed.nolinks) { ignorepost = true;}
 
 			if (!ignorepost) {
 
