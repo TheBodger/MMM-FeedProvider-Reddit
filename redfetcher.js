@@ -214,7 +214,7 @@ exports.reddit = function() {
     function get(url, res, err) {
         var xhr = new XMLHttpRequest();
         //xhr.open("GET", url, true);
-        xhr.open("GET", url, false);
+        xhr.open("GET", url, true);
         xhr.onload = function () {
             return res(xhr.responseText);
         };
