@@ -329,6 +329,14 @@ module.exports = NodeHelper.create({
 
 				break;
 
+			case 'hot':
+
+				reddit.hot(feed.configfeed.reddit).limit(feed.configfeed.limit).fetch(function (res) {
+					self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems, feedidx);
+				});
+
+				break;
+
 			case 'search':
 
 				reddit.search(feed.configfeed.reddit).t(feed.configfeed.oldestage).limit(feed.configfeed.limit).fetch(function (res) {
