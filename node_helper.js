@@ -396,7 +396,9 @@ module.exports = NodeHelper.create({
 
 			var media = items.data.children[tIndex].data;
 
-			if (media.over_18 && !theconfig.adultonly) { ignorepost = true };
+			if (media.over_18 && !theconfig.adultonly) { ignorepost = true;}
+
+			if (theconfig.nolinks && media.selftext == '') { ignorepost = true;}
 
 			if (!ignorepost) {
 

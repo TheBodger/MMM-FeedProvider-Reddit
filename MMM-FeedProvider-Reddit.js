@@ -32,7 +32,8 @@ Module.register("MMM-FeedProvider-Reddit", {
 				reddit: 'funny',	//there is no default for this entry - it is acceptable to be undefined
 				limit: 5,
 				type: 'top',		//reddit.js supported commands (search, searchsub, top, controversial, random)
-				oldestage: 'all'	//a date, number of minutes, or the followimng strings: 'today' , special reddit options 'day', 'week', 'month', 'year' or 'all'(-time)
+				oldestage: 'all',	//a date, number of minutes, or the followimng strings: 'today' , special reddit options 'day', 'week', 'month', 'year' or 'all'(-time)
+				nolinks:true,		//ignores any item that looks like a link to another item
 			},
 
         ],
