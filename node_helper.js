@@ -33,7 +33,7 @@ var UTILITIES = require('../MMM-FeedUtilities/utilities');
 
 // structures
 
-var rsssource = new RSS.RSSsource();
+
 
 // local variables, held at provider level as this is a common module
 //these are largely for the authors reference and are not actually used in thsi code
@@ -84,11 +84,6 @@ module.exports = NodeHelper.create({
 				latestfeedpublisheddate: new Date(0),
 				configfeed: configfeed,
 			};
-
-			//this is needed for the processing in the display manager (alternate)
-
-			rsssource.sourcetitle = configfeed.feedtitle;
-			rsssource.title = configfeed.feedtitle;
 
 			//store the actual timestamp to start filtering, this will change as new feeds are pulled to the latest date of those feeds
 			//if no date is available on a feed, then the current latest date of a feed published is allocated to it
@@ -490,6 +485,12 @@ module.exports = NodeHelper.create({
 		if (new Date(0) < self.maxfeeddate) {
 			providerstorage[moduleinstance].trackingfeeddates[feedidx]['latestfeedpublisheddate'] = self.maxfeeddate;
 		}
+
+		//this is needed for the processing in the display manager (alternate)
+		var rsssource = new RSS.RSSsource();
+
+		rsssource.sourcetitle = feed.configfeed.feedtitle;
+		rsssource.title = feed.configfeed.feedtitle;
 
 		self.send(moduleinstance, theconfig.id, rsssource, rssitems);
 
