@@ -317,7 +317,7 @@ module.exports = NodeHelper.create({
 
 				// Fetch the top 5 funniest posts of all time from /r/funny
 				reddit.top(feed.configfeed.reddit).t(feed.configfeed.oldestage).limit(feed.configfeed.limit).fetch(function (res) {
-					self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems); 
+					self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems, feedidx); 
 				});
 
 				break;
@@ -325,7 +325,7 @@ module.exports = NodeHelper.create({
 			case 'search':
 
 				reddit.search(feed.configfeed.reddit).t(feed.configfeed.oldestage).limit(feed.configfeed.limit).fetch(function (res) {
-					self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems);
+					self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems, feedidx);
 				}
 
 				);
@@ -334,7 +334,7 @@ module.exports = NodeHelper.create({
 			case 'searchsub':
 
 				reddit.searchSubreddits(feed.configfeed.reddit).t(feed.configfeed.oldestage).limit(feed.configfeed.limit).fetch(function (res) {
-						self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems); 
+					self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems, feedidx); 
 					}
 
 				);
@@ -343,7 +343,7 @@ module.exports = NodeHelper.create({
 			case 'controversial':
 
 				reddit.controversial(feed.configfeed.reddit).t(feed.configfeed.oldestage).limit(feed.configfeed.limit).fetch(function (res) {
-					self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems);
+					self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems, feedidx);
 				}
 
 				);
@@ -364,7 +364,7 @@ module.exports = NodeHelper.create({
 				for (var iter = 0; iter < itercount; iter++) {
 
 					reddit.random(feed.configfeed.reddit).fetch(function (res) {
-						self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, new RSS.RSSitems());
+						self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, new RSS.RSSitems(), feedidx);
 					}
 
 					);
@@ -375,17 +375,9 @@ module.exports = NodeHelper.create({
 
 		}
 
-		if (new Date(0) < self.maxfeeddate) {
-			providerstorage[moduleinstance].trackingfeeddates[feedidx]['latestfeedpublisheddate'] = self.maxfeeddate;
-		}
-
-		self.send(moduleinstance, providerid, rsssource, rssitems);
-
-		self.done();
-
 	},
 
-	parseRedditPosts: function (theConfig, items, feed, moduleinstance, rssitems) {
+	parseRedditPosts: function (theConfig, items, feed, moduleinstance, rssitems, feedidx) {
 
 		var self = this;
 
@@ -441,7 +433,9 @@ module.exports = NodeHelper.create({
 					console.log("Article missing a date - so used: " + feed['latestfeedpublisheddate']);
 				}
 
-				if (post.pubdate >= feed.lastFeedDate && post.pubdate > feed.latestfeedpublisheddate) {
+				//special condition for random - dont check the dates!!
+				if(	feed.configfeed.type.toLowerCase() = 'random' ||
+					post.pubdate >= feed.lastFeedDate && post.pubdate > feed.latestfeedpublisheddate) {
 
 					rssarticle.id = rssarticle.gethashCode(post.title);
 					rssarticle.title = post.title;
@@ -467,6 +461,14 @@ module.exports = NodeHelper.create({
 			}
 
 		} //end of processing this particular batch of tweets
+
+		if (new Date(0) < self.maxfeeddate) {
+			providerstorage[moduleinstance].trackingfeeddates[feedidx]['latestfeedpublisheddate'] = self.maxfeeddate;
+		}
+
+		self.send(moduleinstance, theconfig.id, rsssource, rssitems);
+
+		self.done();
 
 	},
 
