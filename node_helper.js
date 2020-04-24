@@ -390,6 +390,11 @@ module.exports = NodeHelper.create({
 
 		if (self.debug) { self.logger[moduleinstance].info("parse "); }
 
+		if (items.HTTPStatus != null) { //error occured, just ignore this one and keep going
+			console.log(this.name, items.HTTPStatus, items.responseHeaders)
+			return;
+        }
+
 		if (Array.isArray(items)) { items = items[0];}
 
 		for (var tIndex = 0; tIndex < items.data.children.length; tIndex++) {
