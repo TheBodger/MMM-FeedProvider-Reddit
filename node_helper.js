@@ -85,6 +85,11 @@ module.exports = NodeHelper.create({
 				configfeed: configfeed,
 			};
 
+			//this is needed for the processing in the display manager (alternate)
+
+			rsssource.sourcetitle = configfeed.feedtitle;
+			rsssource.title = configfeed.feedtitle;
+
 			//store the actual timestamp to start filtering, this will change as new feeds are pulled to the latest date of those feeds
 			//if no date is available on a feed, then the current latest date of a feed published is allocated to it
 
