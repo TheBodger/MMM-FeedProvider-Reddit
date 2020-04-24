@@ -213,9 +213,11 @@ exports.reddit = function() {
 
     function get(url, res, err) {
         var xhr = new XMLHttpRequest();
-        //xhr.open("GET", url, true);
         xhr.open("GET", url, true);
         xhr.onload = function () {
+            if (xhr.status != 200) {
+                return res(JSON.stringify({ HTTPStatus: xhr.status,responseHeaders:xhr.getAllResponseHeaders()}));
+            }
             return res(xhr.responseText);
         };
         xhr.onerror = function () {
