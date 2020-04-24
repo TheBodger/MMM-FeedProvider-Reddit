@@ -185,8 +185,11 @@ exports.reddit = function() {
             return ret;
         };
 
+        //special condition to help random work better
+
         if (on.subreddit !== undefined) {
-            url += "r/" + on.subreddit + "/";
+            if (on.subreddit == '') { url += "r/" }
+            else { url += "r/" + on.subreddit + "/"; }
         }
         url += on.resource + ".json";
         if (keys(on.params).length > 0) {

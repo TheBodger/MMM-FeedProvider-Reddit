@@ -351,11 +351,25 @@ module.exports = NodeHelper.create({
 
 			case 'random':
 
-				reddit.random(feed.configfeed.reddit).fetch(function (res) {
-					self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems);
+				//because random only returns 1 item (assuming that the subredit is defined in some way)
+				//we call this multiple times
+				//we define the rssitems here to stop duplication occuring, though being random it may well still duplicate
+
+				var itercount = 1;
+
+				if (feed.reddit != null) {
+					itercount = feed.limit;
 				}
 
-				);
+				for (var iter = 0; iter < feed.limit; iter++) {
+
+					reddit.random(feed.configfeed.reddit).fetch(function (res) {
+						self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, new RSS.RSSitems());
+					}
+
+					);
+				}
+				
 				break;
 
 
@@ -376,6 +390,8 @@ module.exports = NodeHelper.create({
 		var self = this;
 
 		if (self.debug) { self.logger[moduleinstance].info("parse "); }
+
+		if (Array.isArray(items)) { items = items[0];}
 
 		for (var tIndex = 0; tIndex < items.data.children.length; tIndex++) {
 
