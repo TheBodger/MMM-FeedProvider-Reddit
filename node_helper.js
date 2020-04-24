@@ -415,9 +415,7 @@ module.exports = NodeHelper.create({
 				//|| media.post_hint != 'image' 
 				//could check for preseence of preview images, but that isnt always true either
 
-				if (!media.is_self ) { // possible way of recognising no media post
-					post['image']['url'] = media.url;
-				}
+				post['image']['url'] = RSS.checkurl(media.url) ? media.url : null;
 
 				post['title'] = media.title;
 
