@@ -486,7 +486,7 @@ module.exports = NodeHelper.create({
 
 		//this is needed for the processing in the display manager (alternate)
 		var rsssource = new RSS.RSSsource();
-		rssource.sourceiconclass = 'fa fa-reddit redditred';
+		rsssource.sourceiconclass = 'fa fa-reddit redditred';
 
 		rsssource.sourcetitle = feed.configfeed.feedtitle;
 		rsssource.title = feed.configfeed.feedtitle;
