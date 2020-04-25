@@ -33,8 +33,6 @@ var UTILITIES = require('../MMM-FeedUtilities/utilities');
 
 // structures
 
-
-
 // local variables, held at provider level as this is a common module
 //these are largely for the authors reference and are not actually used in thsi code
 
@@ -488,6 +486,7 @@ module.exports = NodeHelper.create({
 
 		//this is needed for the processing in the display manager (alternate)
 		var rsssource = new RSS.RSSsource();
+		rssource.sourceiconclass = 'fa fa-reddit redditred';
 
 		rsssource.sourcetitle = feed.configfeed.feedtitle;
 		rsssource.title = feed.configfeed.feedtitle;
