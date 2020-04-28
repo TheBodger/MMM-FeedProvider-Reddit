@@ -22,8 +22,6 @@ Module.register("MMM-FeedProvider-Reddit", {
         id: "",				//the unique id of this provider
         // optional
         datarefreshinterval: 5000*60,
-		language: '',		//leave empty and only use if requested
-
 		//the following are used as a default for all feeds if not explicity defined in config.js
 		adultonly: true,	//obvious really !! //used as a default for all feeds as well if not explicity defined
 		nolinks: true,		//ignores any item that looks like a link to another item
