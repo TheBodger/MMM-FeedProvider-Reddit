@@ -1,3 +1,13 @@
+/* global Module, MMM-FeedProvider-Reddit */
+
+/* Magic Mirror
+ * Module: MMM-FeedProvider-Reddit
+ *
+ * By Neil Scott
+ * MIT Licensed.
+ */
+
+
 var startTime = new Date();
 
 var feedDisplayPayload = { consumerid: '', providerid: '', payload: '' };
