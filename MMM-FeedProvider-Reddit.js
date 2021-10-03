@@ -32,8 +32,8 @@ Module.register("MMM-FeedProvider-Reddit", {
         id: "",				//the unique id of this provider
         // optional
         datarefreshinterval: 5000*60,
-		//the following are used as a default for all feeds if not explicity defined in config.js
-		adultonly: true,	//obvious really !! //used as a default for all feeds as well if not explicity defined
+		//the following are used as a default for all feeds if not explicitly defined in config.js
+		adultonly: true,	//obvious really !! //used as a default for all feeds as well if not explicitly defined
 		nolinks: true,		//ignores any item that looks like a link to another item
 		limit: 25,			//limit of feeds to fetch from reddit if supported in the type call
 		type: 'top',		//reddit.js supported commands (search, searchsub, top, controversial, random)

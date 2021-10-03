@@ -32,12 +32,12 @@ exports.reddit = function() {
         }, ["t"]);
     };
 
-    //this.reddit["new"] = function (subreddit) {
-    //    return listing({
-    //        subreddit: subreddit,
-    //        resource: "new"
-    //    });
-    //};
+    this.new = function (subreddit) {
+        return listing({
+            subreddit: subreddit,
+            resource: "new"
+        });
+    };
 
     this.about = function (subreddit) {
         return fetch({

@@ -25,6 +25,10 @@
 //nodehelper stuff:
 //this.name String The name of the module
 
+//added support for .gifv tracking, the display also needs updating 
+//post.imgur = null or url of gifv
+
+
 var NodeHelper = require("node_helper");
 
 var redfetcher = require('./redfetcher'); // for fetching reddits
@@ -344,6 +348,14 @@ module.exports = NodeHelper.create({
 
 				break;
 
+			case 'new':
+
+				reddit.new(feed.configfeed.reddit).limit(feed.configfeed.limit).fetch(function (res) {
+					self.parseRedditPosts(providerstorage[moduleinstance].config, res, feed, moduleinstance, rssitems, feedidx);
+				});
+
+				break;
+
 			case 'search':
 
 				reddit.search(feed.configfeed.reddit).t(feed.configfeed.oldestage).limit(feed.configfeed.limit).fetch(function (res) {
@@ -423,6 +435,8 @@ module.exports = NodeHelper.create({
 
 			var media = items.data.children[tIndex].data;
 
+			if (self.debug) { self.logger[moduleinstance].info(JSON.stringify(media)); }
+
 			if (media.over_18 && !feed.configfeed.adultonly) { ignorepost = true;}
 
 			if (media.post_hint == 'link' && feed.configfeed.nolinks) { ignorepost = true;}
@@ -435,6 +449,11 @@ module.exports = NodeHelper.create({
 				//could check for preseence of preview images, but that isnt always true either
 
 				post['image']['url'] = rssarticle.isImage(media.url) ? media.url : null;
+
+				//special code needed for imgur format gifv - can use iframe
+				//added support for .gifv tracking, the display also needs updating - basis for adding videos
+				//post.video = null or url of gifv video 
+				post['image']['videoURL'] = rssarticle.isIMGUR(media.url) ? media.url_overridden_by_dest : null;
 
 				post['title'] = media.title;
 
@@ -476,8 +495,9 @@ module.exports = NodeHelper.create({
 					rssarticle.source = post.source;
 
 					rssarticle.imageURL = post.image.url;
+					rssarticle.videoURL = post.image.videoURL;
 
-					if (self.debug) { self.logger[moduleinstance].info("article " + JSON.stringify(rssarticle)); }
+					if (self.debug) {self.logger[moduleinstance].info("article " + JSON.stringify(rssarticle)); }
 
 					rssitems.items.push(rssarticle);
 

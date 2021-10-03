@@ -1,10 +1,10 @@
 {
-  "name": "MMM-FeedProvider-RSS",
+  "name": "MMM-MMM-FeedProvider-Reddit-RSS",
   "version": "1.0.0",
-  "description": "Magic Mirror Module for pulling RSS and ATom feeds, converting to RSS 2.0 format and passing to a main module",
+  "description": "Magic Mirror Module for pulling Redit articles, converting to RSS 2.0 format and passing to a main module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/TheBodger/MMM-FeedProvider-RSS"
+    "url": "git+https://github.com/TheBodger/MMM-FeedProvider-Reddit"
   },
   "author": {
     "name": "N Scott"
@@ -18,16 +18,12 @@
     "provider"
   ],
   "dependencies": {
-    "axios": "latest",
-    "winston": "latest",
-    "moment": "latest",
-    "feedparser": "latest",
-    "request": "latest",
-    "fs": "latest"
+    "xmlhttprequest": "latest"
+
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/TheBodger/MMM-FeedProvider-RSS/issues"
+    "url": "https://github.com/TheBodger/MMM-FeedProvider-Reddit/issues"
   },
-  "homepage": "https://github.com/TheBodger/MMM-FeedProvider-RSS#readme"
+  "homepage": "https://github.com/TheBodger/MMM-FeedProvider-Reddit#readme"
 }
