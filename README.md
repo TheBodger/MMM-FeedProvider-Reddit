@@ -4,7 +4,7 @@ This magic mirror module is a MMM-FeedProvider module that is part of the the MM
 
 For an overview of these modules see the README.md in https://github.com/TheBodger/MMM-FeedDisplay.
 
-the -Reddit module will monitor and format any Reddit feeds it is configured to get. It will extract text and the first Image that is embbeded within a feed item.
+the -Reddit module will monitor and format any Reddit feeds it is configured to get. It will extract text and the first Image that is embbeded within a feed item. If an alternative media is provided it will be extracted and passed through a videoURL field. This currently will only support a .gifv entry (and that has a .mp4 resource available at the provided url)
 
 The included redfetcher.js was amended from https://github.com/sahilm/reddit.js. The original is a browser only script and was amended to work within a nodejs environment with a couple of bug fixes.
 
